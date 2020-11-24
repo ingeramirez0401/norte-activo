@@ -1,0 +1,44 @@
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive m-t-40">
+                        <div class="form-group">
+                            <table id="myTable" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Fecha</th>
+                                        <th>Nombre y Apellido</th>
+                                        <th>Email</th>
+                                        <th>Telefono</th>
+                                        <th class="text-nowrap">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody *ngIf="contactList">
+                                    <tr *ngFor="let contact of contactList;let i = index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{contact.fecha | date:'medium'}}</td>
+                                        <td>{{contact.name | uppercase}} {{contact.lastName | uppercase}}</td>
+                                        <td>{{contact.email}}</td>
+                                        <td>{{contact.telefono}}</td>
+                                        <td class="text-center">
+                                            <a style="cursor: pointer" (click)="viewContact(contact)" data-toggle="tooltip" data-original-title="Ver"> <i class="fa fa-eye text-success m-r-10"></i> </a>
+                                            <a style="cursor: pointer" (click)="deleteContact(contact)" data-toggle="tooltip" data-original-title="Eliminar"> <i class="fa fa-trash text-danger"></i> </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+    </div>

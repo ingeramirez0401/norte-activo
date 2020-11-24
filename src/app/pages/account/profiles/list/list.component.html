@@ -1,0 +1,27 @@
+<div class="table-responsive m-t-40">
+  <div class="form-group">
+      <a routerLink="/profiles/create" class="btn btn-danger btn-sm"><i class="icon wb-plus" aria-hidden="true"></i> New Profile
+</a>
+      <table id="myTable" class="table table-bordered table-striped">
+          <thead>
+              <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th class="text-nowrap"></th>
+              </tr>
+          </thead>
+          <tbody *ngIf="profileList">
+              <tr *ngFor="let profile of profileList;let i = index">
+                  <td>{{i+1}}</td>
+                  <td>{{profile.name | uppercase}}</td>
+                  <td>{{profile.description | uppercase}}</td>
+                  <td class="text-nowrap">
+                      <a style="cursor: pointer" (click)="goToUpdateProfile(profile)" data-toggle="tooltip" data-original-title="Editar"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                      <a style="cursor: pointer" (click)="deleteProfile(profile)" data-toggle="tooltip" data-original-title="Eliminar"> <i class="fa fa-close text-danger"></i> </a>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</div>

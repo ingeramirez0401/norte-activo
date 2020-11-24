@@ -1,0 +1,23 @@
+<div *ngIf="contact" class="container-fluid">
+    <div class="card bg-light">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><b>Nombre y Apellido:</b> {{contact.name}} {{contact.lastName}}</div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><b>Telefono:</b> {{contact.telefono}}</div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><b>Correo electrónico:</b> {{contact.email}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="card bg-light">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h2>Mensaje</h2>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <p>{{contact.message}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

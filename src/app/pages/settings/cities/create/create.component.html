@@ -1,0 +1,50 @@
+<form *ngIf="forma" [formGroup]="forma" class="form p-t-20" (ngSubmit)="saveChanges()">
+    <div class="row">        
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label for="exampleInputuname">País*</label>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                    <select name="CountryId" formControlName="CountryId" class="form-control" (change)="onSelectCountry()" required>
+                      <option *ngFor="let country of countryList" [ngValue]="country.id">
+                        {{ country.name }}
+                      </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label for="exampleInputuname">Departamento*</label>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                    <select name="DepartmentId" formControlName="DepartmentId" class="form-control" required>
+                      <option *ngFor="let country of departmentList" [ngValue]="country.id">
+                        {{ country.name }}
+                      </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label for="exampleInputuname">Nombre*</label>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                    <input type="text" class="form-control" name="Name" formControlName="Name" required>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label for="exampleInputuname">Código</label>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                    <input type="text" class="form-control" name="Code" formControlName="Code" required>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button [disabled]="forma.invalid" type="submit" class="btn btn-info waves-effect waves-light m-r-10"><i class="fa fa-save"></i> Guardar</button>
+    <button type="button" (click)="goToList()" class="btn btn-inverse waves-effect waves-light">Volver al Listado</button>
+</form>

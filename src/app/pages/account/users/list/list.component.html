@@ -1,0 +1,33 @@
+<div class="table-responsive m-t-40">
+    <div class="form-group">
+        <a routerLink="/users/create" class="btn btn-danger btn-sm"><i class="icon wb-plus" aria-hidden="true"></i> Nuevo
+  </a>
+        <table id="myTable" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Documento de Identidad</th>
+                    <th>Perfíl</th>
+                    <th>Estado</th>
+                    <th class="text-nowrap"></th>
+                </tr>
+            </thead>
+            <tbody *ngIf="userList">
+                <tr *ngFor="let user of userList;let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{user.name1 | uppercase}}</td>
+                    <td>{{user.lastName | uppercase}}</td>
+                    <td>{{user.identificationNumber | uppercase}}</td>
+                    <td>{{user.profileName | uppercase}}</td>
+                    <td>{{user.stateName | uppercase}}</td>
+                    <td class="text-nowrap">
+                        <a style="cursor: pointer" (click)="goToUpdateUser(user)" data-toggle="tooltip" data-original-title="Editar"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                        <a style="cursor: pointer" (click)="deleteUser(user)" data-toggle="tooltip" data-original-title="Eliminar"> <i class="fa fa-close text-danger"></i> </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

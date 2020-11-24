@@ -1,0 +1,129 @@
+<!-- ============================================================== -->
+<!-- Start Page Content -->
+<!-- ============================================================== -->
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card-body">
+                        <form *ngIf="forma" [formGroup]="forma" (ngSubmit)="saveChanges()">
+                            <h3 class="card-title">Crear una nueva Noticia</h3>
+                            <div class="form-group">
+                                <input class="form-control" name="Title" formControlName="Title" autocomplete="off" placeholder="Título de la noticia:" (blur)="onTypeTitle()" required>
+                            </div>
+                            <div class="form-group">
+                                <select name="CategoryId" class="form-control" formControlName="CategoryId" required>
+                                    <option value="0">Seleccione Categoría</option>
+                                    <option *ngFor="let item of categoryList; let i=index" [value]="item.categoryId">{{item.name | uppercase}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input id="datepicker-autoclose" class="form-control" name="Date" formControlName="Date" autocomplete="off" placeholder="Fecha de Publicacion:">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" name="Route" formControlName="Route" autocomplete="off" placeholder="Ruta de acceso:" readonly="readonly">
+                            </div>
+                            <div class="form-group">
+                                <textarea name="ShortTitle" formControlName="ShortTitle" class="form-control" cols="30" rows="5"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="mymce" name="Content" formControlName="Content"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="Destacado">¿Destacar?</label>
+                                <select name="Featured" class="form-control" formControlName="Featured">
+                                  <option value="No">No</option>
+                                  <option value="Si">Sí</option>
+                              </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="Destacado">Activa</label>
+                                <select name="Active" class="form-control" formControlName="Active">
+                                      <option value="Si">Si</option>
+                                      <option value="No">No</option>
+                              </select>
+                            </div>
+                            <button [disabled]="forma.invalid" type="submit" class="btn btn-success m-t-20"><i class="fa fa-save"></i> Guardar Cambios</button>
+                            <button (click)="goToNewList()" class="btn btn-inverse m-t-20"><i class="fa fa-times"></i> Volver al Listado</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Galería de Imágenes</h4>
+                <h6 class="card-subtitle">Seleccione las Imágenes que desee cargar. Recuerde que deben ser de 720px de ancho por 480px de alto.</h6>
+                <br>
+                <input type="file" #fileNews (change)="loadPhotoNew($event)">
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Galería de Imagenes</h4>
+                <div class="row el-element-overlay">
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                        <div class="card">
+                            <div class="el-card-item">
+                                <div class="el-card-avatar el-overlay-1"> <img src="./assets/images/news/default.jpg" />
+                                    <div class="el-overlay">
+                                        <ul class="el-info">
+                                            <li><a class="btn default btn-outline image-popup-vertical-fit" href="./assets/images/news/default.jpg"><i class="icon-magnifier"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngFor="let img of newsImageList" class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                        <div class="card">
+                            <div class="el-card-item">
+                                <div class="el-card-avatar el-overlay-1">
+                                    <a [href]="img.urlImagen" target="_blank"><img [src]="img.urlImagen" /></a>
+                                    <div class="el-overlay">
+                                        <ul class="el-info">
+                                            <li><a class="btn default btn-outline image-popup-vertical-fit" [href]="img.urlImagen" target="_blank"><i class="icon-magnifier"></i></a></li>
+                                            <li><a class="btn default btn-outline" (click)="deleteImageFromNew(img)"><i class="icon-trash"></i></a></li>
+                                            <li><a class="btn default btn-outline" (click)="setDestacada(img)"><i class="icon-star"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Cargar Adjunto</h4>
+                <h6 class="card-subtitle">Seleccione el archivo que desea cargar</h6>
+                <br>
+                <input type="file" #attachNews (change)="loadFileNew($event)">
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Listado de Adjuntos</h4>
+                <div class="row">
+                    <div style="padding: 10px;" *ngFor="let file of newsFilesList" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 file-item">
+                        <a [href]="file.urlImagen" target="_blank"><b><i class="fa fa-file"></i> {{ file.urlImagen }}</b></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Page Content -->
+<!-- ============================================================== -->

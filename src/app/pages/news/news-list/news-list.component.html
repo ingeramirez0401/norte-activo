@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive m-t-40">
+                        <div class="form-group">
+                            <a routerLink="/news/create" class="btn btn-danger btn-sm"><i class="icon wb-plus" aria-hidden="true"></i> Nueva Noticia
+                          </a>
+                            <table id="myTable" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Fecha</th>
+                                        <th>Título</th>
+                                        <th>¿Destacada?</th>
+                                        <th>Estado</th>
+                                        <th class="text-nowrap">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody *ngIf="newList">
+                                    <tr *ngFor="let new of newList;let i = index">
+                                        <td><img [src]="new.coverImage | defaultNoticia" alt="Noticia Destacada" class="h70 img img-rounded"></td>
+                                        <td>{{new.date | date}}</td>
+                                        <td>{{new.title}}</td>
+                                        <td class="text-center"><span class="label label-table" [ngClass]="(new.featured == true)?'label-success':'label-inverse'">{{(new.featured == true)?'Sí':'No'}}</span></td>
+                                        <td class="text-center"><span class="label label-table" [ngClass]="(new.active == true)?'label-success':'label-danger'">{{(new.active == true)?'Activa':'Inactiva'}}</span></td>
+                                        <td class="text-center">
+                                            <a style="cursor: pointer" (click)="goToUpdateView(new)" data-toggle="tooltip" data-original-title="Editar"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                                            <a style="cursor: pointer" (click)="disableNew(new)" data-toggle="tooltip" data-original-title="Inactivar"> <i class="fa fa-power-off text-warning m-r-10"></i> </a>
+                                            <a style="cursor: pointer" (click)="deleteNew(new)" data-toggle="tooltip" data-original-title="Eliminar"> <i class="fa fa-trash text-danger"></i> </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+    </div>

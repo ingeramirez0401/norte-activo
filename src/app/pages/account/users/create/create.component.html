@@ -1,0 +1,162 @@
+<form *ngIf="forma" [formGroup]="forma" class="form p-t-20" (ngSubmit)="saveChanges()">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label for="exampleInputuname">Primer Nombre*</label>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                    <input type="text" class="form-control" name="Name1" formControlName="Name1" required>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label for="exampleInputuname">Segundo Nombre</label>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                    <input type="text" class="form-control" name="Name2" formControlName="Name2">
+                </div>
+            </div>
+        </div>       
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label for="exampleInputuname">Apellidos*</label>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                    <input type="text" class="form-control" name="LastName" formControlName="LastName" required>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label for="exampleInputuname">Documento de Identidad*</label>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                    <input type="text" class="form-control" name="IdentificationNumber" formControlName="IdentificationNumber" required>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label for="exampleInputuname">Genero*</label>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                    <select name="GenreId" formControlName="GenreId" class="form-control" required>
+                      <option *ngFor="let genre of genreList" [ngValue]="genre.id">
+                        {{ genre.name }}
+                      </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label for="exampleInputuname">Fecha de Nacimiento</label>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                    <input type="date" class="form-control" name="DateOfBirth" formControlName="DateOfBirth">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label for="exampleInputuname">País*</label>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                    <select name="CountryId" formControlName="CountryId" class="form-control" (change)="onSelectCountry()" required>
+                      <option *ngFor="let country of countryList" [ngValue]="country.id">
+                        {{ country.name }}
+                      </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label for="exampleInputuname">Departamento*</label>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                    <select name="DepartmentId" formControlName="DepartmentId" class="form-control" (change)="onSelectDepartment()" required>
+                      <option *ngFor="let country of departmentList" [ngValue]="country.id">
+                        {{ country.name }}
+                      </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <div class="form-group">
+              <label for="exampleInputuname">Municipio*</label>
+              <div class="input-group">
+                  <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                  <select name="CityId" formControlName="CityId" class="form-control" (change)="onSelectCity()" required>
+                    <option *ngFor="let city of cityList" [ngValue]="city.id">
+                      {{ city.name }}
+                    </option>
+                  </select>
+              </div>
+          </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <div class="form-group">
+              <label for="exampleInputuname">Código Postal</label>
+              <div class="input-group">
+                  <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                  <select name="ZipCodeId" formControlName="ZipCodeId" class="form-control">
+                    <option *ngFor="let zipcode of zipCodeList" [ngValue]="zipcode.id">
+                      {{ zipcode.value }}
+                    </option>
+                  </select>
+              </div>
+          </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <div class="form-group">
+              <label for="exampleInputuname">Correo Electrónico*</label>
+              <div class="input-group">
+                  <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                  <input type="text" class="form-control" name="Email" formControlName="Email" required>
+              </div>
+          </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <div class="form-group">
+              <label for="exampleInputuname">Telefono 1*</label>
+              <div class="input-group">
+                  <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                  <input type="text" class="form-control" name="Phone1" formControlName="Phone1" required>
+              </div>
+          </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <div class="form-group">
+              <label for="exampleInputuname">Telefono 2</label>
+              <div class="input-group">
+                  <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                  <input type="text" class="form-control" name="Phone2" formControlName="Phone2">
+              </div>
+          </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <div class="form-group">
+              <label for="exampleInputuname">Nombre de Usuario*</label>
+              <div class="input-group">
+                  <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                  <input type="text" class="form-control" name="UserName" formControlName="UserName" required>
+              </div>
+          </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <div class="form-group">
+              <label for="exampleInputuname">Contraseña*</label>
+              <div class="input-group">
+                  <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                  <input type="password" class="form-control" name="Password" formControlName="Password" required>
+              </div>
+          </div>
+      </div>
+    </div>
+    <button [disabled]="forma.invalid" type="submit" class="btn btn-info waves-effect waves-light m-r-10"><i class="fa fa-save"></i> Guardar</button>
+    <button type="button" (click)="goToList()" class="btn btn-inverse waves-effect waves-light">Volver al Listado</button>
+  </form>
+  
